@@ -1,8 +1,8 @@
 {
     "manifestVersion": 1,
-    "id": "samples",
-    "publisher": "ms-samples",
-    "version": "1.0.396",
+    "id": "intern-project-dev",
+    "publisher": "SanskarAgarwal",
+    "version": "1.0.408",
     "name": "Extension Sample",
     "description": "Azure DevOps extension sample",
     "categories": [

@@ -5,8 +5,8 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 // Webpack entry points. Mapping from resulting bundle name to the source file entry.
 const entries = {};
 
-// Loop through subfolders in the "Samples" folder and add an entry for each one
-const samplesDir = path.join(__dirname, "src/Samples");
+// Loop through subfolders in the project folder and add an entry for each one
+const samplesDir = path.join(__dirname, "src");
 fs.readdirSync(samplesDir).filter(dir => {
     if (fs.statSync(path.join(samplesDir, dir)).isDirectory()) {
         entries[dir] = "./" + path.relative(process.cwd(), path.join(samplesDir, dir, dir));
@@ -16,7 +16,8 @@ fs.readdirSync(samplesDir).filter(dir => {
 module.exports = (env, argv) => ({
     entry: entries,
     output: {
-        filename: "[name]/[name].js"
+        filename: "[name]/[name].js",
+        publicPath: "/dist/"
     },
     resolve: {
         extensions: [".ts", ".tsx", ".js"],
@@ -54,7 +55,7 @@ module.exports = (env, argv) => ({
     plugins: [
         new CopyWebpackPlugin({
            patterns: [ 
-               { from: "**/*.html", context: "src/Samples" }
+               { from: "**/*.html", context: "src" }
            ]
         })
     ],
